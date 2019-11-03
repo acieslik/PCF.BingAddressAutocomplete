@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/PCF.BingAddressAutocomplete/v15/.suo
+/.vs/VSWorkspaceState.json
+/.vs/slnx.sqlite
