@@ -9,7 +9,8 @@ Once the app is open, navigate to Settings -> Administration -> Scheduling Param
 To build the PCF control you can you XrmToolBox together with the PCF Custom Control Builder plugin:
 ![P C F C C Builder](images/PCFCCBuilder.png)
 
-
+More details in my blog post:
+https://code2life.blogspot.com/2019/11/yet-another-address-autocomplete-pcf.html
 
 
 
