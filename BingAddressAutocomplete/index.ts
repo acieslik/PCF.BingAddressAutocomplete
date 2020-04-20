@@ -1,4 +1,5 @@
-	/// <reference path="types/MicrosoftMaps/Modules/Autosuggest.d.ts" />
+/// <reference types="powerapps-component-framework" />
+/// <reference path="types/MicrosoftMaps/Modules/Autosuggest.d.ts" />
 
 import { IInputs, IOutputs } from "./generated/ManifestTypes";
 
