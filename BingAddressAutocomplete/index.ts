@@ -8,6 +8,8 @@ export class BingAddressAutocomplete implements ComponentFramework.StandardContr
     private notifyOutputChanged: () => void;
     private searchBox: HTMLInputElement;
 
+    private uniqueId: string;
+
     private value: string;
     private street: string;
     private city: string;
@@ -30,10 +32,12 @@ export class BingAddressAutocomplete implements ComponentFramework.StandardContr
             return;
         }
 
+        this.uniqueId = this.getRandomString();
+
         this.notifyOutputChanged = notifyOutputChanged;
 
         this.searchBox = document.createElement("input");
-        this.searchBox.setAttribute("id", "searchBox");
+        this.searchBox.setAttribute("id", `searchBox-${this.uniqueId}`);
         this.searchBox.className = "addressAutocomplete";
         this.searchBox.addEventListener("mouseenter", this.onMouseEnter.bind(this));
         this.searchBox.addEventListener("mouseleave", this.onMouseLeave.bind(this));
@@ -42,7 +46,7 @@ export class BingAddressAutocomplete implements ComponentFramework.StandardContr
             this.searchBox.setAttribute("value", context.parameters.value.raw);
         }
 
-		container.setAttribute("id", "searchBoxContainer");
+		container.setAttribute("id", `searchBoxContainer-${this.uniqueId}`);
         container.appendChild(this.searchBox);
 
         let bingApiKey = context.parameters.bingapikey.raw;
@@ -62,7 +66,7 @@ export class BingAddressAutocomplete implements ComponentFramework.StandardContr
 				callback: () => {
                     var options = {maxResults: 5};
                     var manager = new Microsoft.Maps.AutosuggestManager(options);
-                    manager.attachAutosuggest('#searchBox', '#searchBoxContainer', (suggestionResult) => {
+                    manager.attachAutosuggest(`#searchBox-${_this.uniqueId}`, `#searchBoxContainer-${_this.uniqueId}`, (suggestionResult) => {
 
                         _this.street = suggestionResult.address.addressLine;
                         _this.city = suggestionResult.address.locality;
@@ -105,6 +109,10 @@ export class BingAddressAutocomplete implements ComponentFramework.StandardContr
 
     private onMouseLeave(): void {
         this.searchBox.className = "addressAutocomplete";
+    }
+
+    private getRandomString(): string {
+        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     }
 
 
